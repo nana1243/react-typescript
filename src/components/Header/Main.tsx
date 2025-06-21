@@ -1,4 +1,6 @@
 import React from 'react';
+import User from "../Users/User";
+import PrintValue from "../PrintValue";
 
 function Main(props) {
     const referenceArray = [1,2,3,4];
@@ -12,9 +14,18 @@ function Main(props) {
     ])
     const referenceSet = new Set([1,2,3,4]);
 
+    const numberValue = 2;
+    const stringValue = 'test';
+    const booleanValue = true;
+    const arrayValue = [1,2,3,5];
+    const objectValue = {id:2 , name : 'test'};
+    const handleClick = () => alert('버튼이 클릭되었습니다!');
+
+
     return (
         <>
             <h1>Main Component</h1>
+            <User name ={"hennie"} age={20} />
             <p>배열 : {referenceArray}</p>
             <p>객체 : {JSON.stringify(referenceObject)}</p>
             <p>배열 : {referenceFunction.toString()}</p>
@@ -22,6 +33,14 @@ function Main(props) {
             <p>Date : {referenceDate.toDateString()}</p>
             <p>Map : {JSON.stringify(Array.from(referenceMap))}</p>
             <p>Set : {JSON.stringify(Array.from(referenceSet))}</p>
+            <PrintValue
+                numberValue = {numberValue}
+                stringValue = {stringValue}
+                booleanValue = {booleanValue}
+                arrayValue = {arrayValue}
+                objectValue= {objectValue}
+                handleClick ={handleClick}
+            />
         </>
     );
 }
