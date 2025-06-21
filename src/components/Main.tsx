@@ -1,6 +1,7 @@
 import React from 'react';
-import User from "../Users/User";
-import PrintValue from "../PrintValue";
+import User from "./Users/User";
+import PrintValue from "./PrintValue";
+import UserV2 from "./UserV2";
 
 function Main(props) {
     const referenceArray = [1,2,3,4];
@@ -22,6 +23,11 @@ function Main(props) {
     const handleClick = () => alert('버튼이 클릭되었습니다!');
 
 
+    const userObject = {
+        username: "hennie",
+        email: "hennie92@naver.com"
+    }
+
     return (
         <>
             <h1>Main Component</h1>
@@ -41,6 +47,7 @@ function Main(props) {
                 objectValue= {objectValue}
                 handleClick ={handleClick}
             />
+            <UserV2 {...userObject} />
         </>
     );
 }
