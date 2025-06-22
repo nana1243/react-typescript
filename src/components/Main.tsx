@@ -1,7 +1,8 @@
 import React from 'react';
 import User from "./Users/User";
 import PrintValue from "./PrintValue";
-import UserV2 from "./UserV2";
+import UserV2 from "./Users/UserV2";
+import Button from "./Button";
 
 function Main(props) {
     const referenceArray = [1,2,3,4];
@@ -48,6 +49,7 @@ function Main(props) {
                 handleClick ={handleClick}
             />
             <UserV2 {...userObject} />
+            <Button onClick={handleClick}>Login</Button>
         </>
     );
 }
