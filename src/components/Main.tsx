@@ -6,6 +6,7 @@ import Button from "./Button";
 import UIButton from "./UI/Button";
 import UIButtonV2 from "./UI/ButtonV2";
 import UserProfile from "./Users/UserProfile";
+import Table from "./Table/Table";
 
 function Main(props) {
     const referenceArray = [1,2,3,4];
@@ -27,7 +28,7 @@ function Main(props) {
     const handleClick = () => alert('버튼이 클릭되었습니다!');
     const handleClickV2 = (event: React.MouseEvent<HTMLButtonElement>) => {
         console.log(`event`,event);
-        alert('버튼이 클릭되었습니다!')
+        alert(event.currentTarget.innerText);
     }
 
 
@@ -61,6 +62,7 @@ function Main(props) {
             <UserProfile name={'Bob'} age={25} isAdmin={false}/>
             <UIButton onClick={handleClick}>Click Me</UIButton>
             <UIButtonV2 handleClick={handleClickV2}> Click Me Too </UIButtonV2>
+            <Table/>
         </>
     );
 }
