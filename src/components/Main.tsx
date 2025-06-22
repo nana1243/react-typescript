@@ -3,6 +3,8 @@ import User from "./Users/User";
 import PrintValue from "./PrintValue";
 import UserV2 from "./Users/UserV2";
 import Button from "./Button";
+import UIButton from "./UI/Button";
+import UIButtonV2 from "./UI/ButtonV2";
 import UserProfile from "./Users/UserProfile";
 
 function Main(props) {
@@ -23,6 +25,10 @@ function Main(props) {
     const arrayValue = [1,2,3,5];
     const objectValue = {id:2 , name : 'test'};
     const handleClick = () => alert('버튼이 클릭되었습니다!');
+    const handleClickV2 = (event: React.MouseEvent<HTMLButtonElement>) => {
+        console.log(`event`,event);
+        alert('버튼이 클릭되었습니다!')
+    }
 
 
     const userObject = {
@@ -50,9 +56,11 @@ function Main(props) {
                 handleClick ={handleClick}
             />
             <UserV2 {...userObject} />
-            <Button onClick={handleClick}>Login</Button>
+            {/*<Button onClick={handleClick}>Login</Button>*/}
             <UserProfile name={'Alice'} age={30} isAdmin={true}/>
             <UserProfile name={'Bob'} age={25} isAdmin={false}/>
+            <UIButton onClick={handleClick}>Click Me</UIButton>
+            <UIButtonV2 handleClick={handleClickV2}> Click Me Too </UIButtonV2>
         </>
     );
 }
