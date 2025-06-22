@@ -3,6 +3,7 @@ import User from "./Users/User";
 import PrintValue from "./PrintValue";
 import UserV2 from "./Users/UserV2";
 import Button from "./Button";
+import UserProfile from "./Users/UserProfile";
 
 function Main(props) {
     const referenceArray = [1,2,3,4];
@@ -50,6 +51,8 @@ function Main(props) {
             />
             <UserV2 {...userObject} />
             <Button onClick={handleClick}>Login</Button>
+            <UserProfile name={'Alice'} age={30} isAdmin={true}/>
+            <UserProfile name={'Bob'} age={25} isAdmin={false}/>
         </>
     );
 }
