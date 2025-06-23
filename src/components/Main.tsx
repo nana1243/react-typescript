@@ -9,7 +9,8 @@ import UserProfile from "./Users/UserProfile";
 import Table from "./Table/Table";
 import FormV2 from "./UI/FormV2";
 import ButtonV3 from "./UI/ButtonV3";
-import StatePractice from "./StatePractice";
+import StatePractice from "./StatePractice/StatePractice";
+import StatePracticeV2 from "./StatePractice/StatePracticeV2";
 
 function Main(props) {
     const referenceArray = [1,2,3,4];
@@ -69,6 +70,7 @@ function Main(props) {
             <ButtonV3 message='this is button for Login!'>Login Please</ButtonV3>
             {/* section5. STATE */}
             <StatePractice/>
+            <StatePracticeV2/>
 
         </>
     );
