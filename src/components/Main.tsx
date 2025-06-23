@@ -12,6 +12,7 @@ import ButtonV3 from "./UI/ButtonV3";
 import StatePractice from "./StatePractice/StatePractice";
 import StatePracticeV2 from "./StatePractice/StatePracticeV2";
 import Profile from "./StatePractice/Profile";
+import Count from "./StatePractice/Count";
 
 function Main(props) {
     const referenceArray = [1,2,3,4];
@@ -73,6 +74,7 @@ function Main(props) {
             <StatePractice/>
             <StatePracticeV2/>
             <Profile/>
+            <Count/>
         </>
     );
 }
