@@ -9,6 +9,7 @@ import UserProfile from "./Users/UserProfile";
 import Table from "./Table/Table";
 import FormV2 from "./UI/FormV2";
 import ButtonV3 from "./UI/ButtonV3";
+import StatePractice from "./StatePractice";
 
 function Main(props) {
     const referenceArray = [1,2,3,4];
@@ -65,8 +66,10 @@ function Main(props) {
             <UIButton onClick={handleClick}>Click Me</UIButton>
             <UIButtonV2 handleClick={handleClickV2}> Click Me Too </UIButtonV2>
             <FormV2/>
-
             <ButtonV3 message='this is button for Login!'>Login Please</ButtonV3>
+            {/* section5. STATE */}
+            <StatePractice/>
+
         </>
     );
 }
