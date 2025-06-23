@@ -7,6 +7,8 @@ import UIButton from "./UI/Button";
 import UIButtonV2 from "./UI/ButtonV2";
 import UserProfile from "./Users/UserProfile";
 import Table from "./Table/Table";
+import FormV2 from "./UI/FormV2";
+import ButtonV3 from "./UI/ButtonV3";
 
 function Main(props) {
     const referenceArray = [1,2,3,4];
@@ -62,7 +64,9 @@ function Main(props) {
             <UserProfile name={'Bob'} age={25} isAdmin={false}/>
             <UIButton onClick={handleClick}>Click Me</UIButton>
             <UIButtonV2 handleClick={handleClickV2}> Click Me Too </UIButtonV2>
-            <Table/>
+            <FormV2/>
+
+            <ButtonV3 message='this is button for Login!'>Login Please</ButtonV3>
         </>
     );
 }
