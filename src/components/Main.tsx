@@ -13,6 +13,7 @@ import StatePractice from "./StatePractice/StatePractice";
 import StatePracticeV2 from "./StatePractice/StatePracticeV2";
 import Profile from "./StatePractice/Profile";
 import Count from "./StatePractice/Count";
+import UserV3 from "./Users/UserV3";
 
 function Main(props) {
     const referenceArray = [1,2,3,4];
@@ -75,6 +76,7 @@ function Main(props) {
             <StatePracticeV2/>
             <Profile/>
             <Count/>
+            <UserV3/>
         </>
     );
 }
