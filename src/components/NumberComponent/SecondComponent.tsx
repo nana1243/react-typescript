@@ -2,17 +2,17 @@ import React, {Dispatch, useState} from 'react';
 
 interface SecondComponentProps {
     count: number;
-    setCount: Dispatch<React.SetStateAction<number>>;
+    handleIncrement: () => void;
 }
 
 function SecondComponent(props:SecondComponentProps){
-    const {count, setCount} = props;
+    const {count, handleIncrement} = props;
 
     return (
         <div>
             <h3>Second Component</h3>
             <p>Count: {count}</p>
-            <button onClick={setCount}>Increment</button>
+            <button onClick={handleIncrement}>Increment</button>
         </div>
     );
 

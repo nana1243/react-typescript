@@ -3,11 +3,11 @@ import React, {Dispatch, useState} from 'react';
 
 interface FirstComponentProps {
     count: number;
-    setCount: Dispatch<React.SetStateAction<number>>;
+    handleIncrement: () => void;
 }
 
 function FirstComponent(props:FirstComponentProps){
-    const {count, setCount} = props;
+    const {count, handleIncrement} = props;
 
     console.log('FirstComponent rendered');
 
@@ -15,7 +15,7 @@ function FirstComponent(props:FirstComponentProps){
         <div>
             <h3>First Component</h3>
             <p>Count: {count}</p>
-            <button onClick={setCount}>Increment</button>
+            <button onClick={handleIncrement}>Increment</button>
         </div>
     );
 }
