@@ -23,7 +23,7 @@ function Count() {
         <>
             <h3>This is Count App</h3>
             <CountDisplay count={count} />
-            <CountButton countDispatch={countDispatch()}/>
+            <CountButton countDispatch={countDispatch}/>
 
         </>
     );
