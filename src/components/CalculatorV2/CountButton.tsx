@@ -1,17 +1,19 @@
 import React, {Dispatch} from 'react';
 
 interface CountButtonProps {
- countDispatch: Dispatch<{ type: string }>;
+    handleIncrement: () => void;
+    handleDecrement: () => void;
+    handleReset: () => void;
 }
 
 function CountButton(props:CountButtonProps) {
-    const {countDispatch} = props;
+    const {handleIncrement , handleDecrement , handleReset} = props;
 
     return (
         <>
-            <button name="increment" onClick={() => countDispatch({type:"INCREMENT"})}>increment</button>
-            <button name="decrement" onClick={() => countDispatch( {type:"DECREMENT"})}>decrement</button>
-            <button name="reset" onClick={() => countDispatch({type: "RESET"})}>reset</button>
+            <button name="increment" onClick={handleIncrement}>increment</button>
+            <button name="decrement" onClick={handleDecrement}>decrement</button>
+            <button name="reset" onClick={handleReset}>reset</button>
         </>
     );
 }
