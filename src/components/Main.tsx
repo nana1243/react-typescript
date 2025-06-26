@@ -12,8 +12,12 @@ import ButtonV3 from "./UI/ButtonV3";
 import StatePractice from "./StatePractice/StatePractice";
 import StatePracticeV2 from "./StatePractice/StatePracticeV2";
 import Profile from "./StatePractice/Profile";
-import Count from "./StatePractice/Count";
+// import Count from "./StatePractice/Count";
 import UserV3 from "./Users/UserV3";
+import FirstComponent from "./NumberComponent/FirstComponent";
+import SecondComponent from "./NumberComponent/SecondComponent";
+import NumberComponent from "./NumberComponent/NumberComponent";
+import Count from "./CalculatorV3/Count";
 
 function Main(props) {
     const referenceArray = [1,2,3,4];
@@ -75,8 +79,11 @@ function Main(props) {
             <StatePractice/>
             <StatePracticeV2/>
             <Profile/>
-            <Count/>
+            {/*<Count/>*/}
             <UserV3/>
+            <NumberComponent/>
+            {/*<Count/>*/}
+            <Count/>
         </>
     );
 }

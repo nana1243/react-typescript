@@ -4,13 +4,27 @@ import CountButton from "./CountButton";
 
 function Count() {
     const [count, setCount] = useState<number>(0);
+    const handleIncrement = () => {
+        setCount((prevCount) => prevCount + 1);
+    }
+
+    const handleDecrement = () => {
+        setCount((prevCount) => prevCount - 1);
+    }
+    const handleReset = () => {
+        setCount(0);
+    }
 
 
     return (
         <>
             <h3>This is Count App</h3>
             <CountDisplay count={count} />
-            <CountButton setCount={setCount} />
+            <CountButton
+                handleIncrement={handleIncrement}
+                handleDecrement={handleDecrement}
+                handleReset={handleReset}
+            />
 
         </>
     );

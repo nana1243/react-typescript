@@ -1,22 +1,13 @@
 import React, {Dispatch} from 'react';
 
 interface CountButtonProps {
-    setCount: Dispatch<React.SetStateAction<number>>;
+    handleIncrement : () => void;
+    handleDecrement : () => void;
+    handleReset : () => void;
 }
 
 function CountButton(props:CountButtonProps) {
-    const {setCount} = props;
-
-    const handleIncrement = () => {
-        setCount((prevCount) => prevCount + 1);
-    }
-
-    const handleDecrement = () => {
-        setCount((prevCount) => prevCount - 1);
-    }
-    const handleReset = () => {
-        setCount(0);
-    }
+    const {handleIncrement,handleDecrement,handleReset} = props;
 
     return (
         <>
