@@ -1,30 +1,32 @@
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer";
-import Main from "./components/Main";
 import {useState} from "react";
-import LoginStatus from "./components/LoginV2/LoginStatus";
+import TrafficLight from "./components/TrafficLight/TrafficLight";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-  };
+    const [light , setLight] = useState<'red' | 'yellow' | 'green'>('red');
 
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-  };
+    const handleClick = (color: 'red' | 'yellow' | 'green') => {
+        switch (color) {
+            case 'red':
+            setLight('yellow');
+            break;
+        case 'yellow':
+            setLight('green');
+            break;
+        case 'green':
+            setLight('red');
+            break;
+        default:
+            console.error('Invalid color');
+            setLight('red');
+            break;
+        }
+    }
+
 
   return (
     <>
-      {/*<Header/>*/}
-      {/*  <Main/>*/}
-      {/*<Footer/>*/}
-        <LoginStatus
-            isLoggedIn={isLoggedIn}
-            handleLogin={handleLogin}
-            handleLogout={handleLogout}
-        />
+        <TrafficLight light={light} handleClick={handleClick}/>
     </>
   )
 }
