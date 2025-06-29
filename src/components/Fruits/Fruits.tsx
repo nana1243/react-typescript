@@ -1,7 +1,12 @@
 import React, {useState} from 'react';
+import {v4 as uuidv4} from 'uuid';
 
 function Fruits() {
-    const [fruitList, setFruitList] = useState<string[]>(['사과', '바나나', '오렌지']);
+    const items = ['사과', '바나나', '오렌지'].map(data => {return {
+        name: data,
+        id: uuidv4(),
+    }})
+    const [fruitList, setFruitList] = useState(items);
     const [inputValue, setInputValue] = useState<string>('');
 
 
@@ -10,11 +15,12 @@ function Fruits() {
             alert('과일 이름을 입력해주세요!');
             return;
         }
-        if(fruitList.includes(inputValue)){
+        const fruitExists = fruitList.some(fruit => fruit.name === inputValue);
+        if(fruitExists){
             alert('이미 추가된 과일입니다.');
             return
         }
-        setFruitList((prevList) => [...prevList, inputValue]);
+        setFruitList((prevList)=> [...prevList, {name: inputValue, id: uuidv4()}]);
         setInputValue(''); // 입력 후 입력창 비우기
     }
 
@@ -25,9 +31,9 @@ function Fruits() {
     return (
         <>
             <ul>
-                {fruitList.map((fruit,index)=>{
+                {fruitList.map((fruit)=>{
                     return(
-                        <li key={index}>{fruit}</li>
+                        <li key= {`${fruit.id}`}>{fruit.name}</li>
                     )
                 })}
             </ul>
