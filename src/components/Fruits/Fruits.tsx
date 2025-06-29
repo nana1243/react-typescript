@@ -37,6 +37,15 @@ function Fruits() {
                     )
                 })}
             </ul>
+
+            <ul>
+                {fruitList.map((fruit)=>{
+                    return(
+                        <li key= {`${fruit.id}`}>{fruit.name}</li>
+                    )
+                })}
+            </ul>
+
             <input type="text" value={inputValue} onChange={handleOnChange} />
             <button onClick={handleOnclick}>과일 추가</button>
         </>
