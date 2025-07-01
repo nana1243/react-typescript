@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Button from "./Button";
 import styles from "./ButtonGroup.module.css";
+import classNames from "classnames/bind";
 
 
 function ButtonGroup(props) {
@@ -38,6 +39,8 @@ function ButtonGroup(props) {
     const handleReset = () => {
         setButtonsList(initialState);
     }
+    const cx = classNames.bind(styles);
+
 
 
     return (
@@ -60,7 +63,7 @@ function ButtonGroup(props) {
                     )
                 })}
             </ul>
-            <button className={'button'} onClick={handleReset}>Reset</button>
+            <button className={cx('button')} onClick={handleReset}>Reset</button>
         </div>
     );
 }
