@@ -44,7 +44,7 @@ function ButtonGroup(props) {
         <div>
             <h1>Active {buttonsActiveList.filter(data => data.isActive)?.length}</h1>
             <ul>
-                {initialButtons.map((item)=> {
+                {buttonsActiveList.map((item)=> {
                     return (
                         <>
                             <Button
@@ -52,7 +52,7 @@ function ButtonGroup(props) {
                                 id={item.id}
                                 label={item.label}
                                 icon={item.icon}
-                                isActive={buttonsActiveList.find(data => data.id === item.id).isActive}
+                                isActive={item.isActive}
                                 isDisabled={item.isDisabled}
                                 handleClick={handleButtonClick}
                             />
