@@ -20,15 +20,20 @@ function Button(props) {
         border: 1px solid #ccc;
       `;
 
+    const BlueBorderWrapper = styled(Wrapper)`
+        border-color: blue;
+        background-color: lightblue;
+    `;
+
     return (
         <div>
 
             <Title $color='red'>Hello, ReactJS! </Title>
-            <Wrapper>
+            <BlueBorderWrapper>
                 <button onClick={(event) => handleClick(event)}>TEST</button>
                 <button className={cx('btn')}>button</button>
                 <button className={cx('btn', {'is-active' :isActive})}>Active Button</button>
-            </Wrapper>
+            </BlueBorderWrapper>
         </div>
     );
 }
