@@ -33,7 +33,8 @@ function Button(props) {
 
     return (
         <div>
-
+            {/*상속 받은 Bigtitle 은 영향을 받지 못한다. */}
+            <BigTitle as='p'>Hello, Styled Components!</BigTitle>
             <Title $color='lightblue' as='h3'>Hello, ReactJS! </Title>
             <BlueBorderWrapper>
                 <button onClick={(event) => handleClick(event)}>TEST</button>
