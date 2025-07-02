@@ -15,6 +15,7 @@ function Button(props) {
         color: ${(props) => props.$color || 'black'};
         text-decoration: underline;
       `;
+
     const BigTitle = styled(Title)`
         font-size: 2em;
         font-weight: bold;
@@ -33,7 +34,7 @@ function Button(props) {
     return (
         <div>
 
-            <BigTitle $color='lightblue'>Hello, ReactJS! </BigTitle>
+            <Title $color='lightblue' as='h3'>Hello, ReactJS! </Title>
             <BlueBorderWrapper>
                 <button onClick={(event) => handleClick(event)}>TEST</button>
                 <button className={cx('btn')}>button</button>
