@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Button.module.css';
 import classNames from "classnames/bind";
-import styled, {keyframes} from "styled-components";
+import styled, {keyframes , css} from "styled-components";
 
 function Button(props) {
     const cx = classNames.bind(styles);
@@ -11,6 +11,11 @@ function Button(props) {
         console.log(event);
         console.log('Button clicked!');
     }
+
+    const boxShadowMixin = css`
+        box-shadow: 0 3px black;
+    `;
+
     const fadeIn = keyframes`
         from {
             opacity: 0;
@@ -36,9 +41,10 @@ function Button(props) {
         border: 1px solid #ccc;
       `;
 
-    const BlueBorderWrapper = styled(Wrapper)`
+    const BlueBorderWrapper = styled(Wrapper)<{$shadow : boolean}>`
         border-color: blue;
         background-color: lightblue;
+        ${props => props.$shadow && boxShadowMixin}
     `;
 
 
@@ -47,7 +53,7 @@ function Button(props) {
             {/*상속 받은 Bigtitle 은 영향을 받지 못한다. */}
             {/*<BigTitle as='p'>Hello, Styled Components!</BigTitle>*/}
             <Title $color='lightblue' as='h3'>Hello, ReactJS! </Title>
-            <BlueBorderWrapper>
+            <BlueBorderWrapper $shadow={true}>
                 <button onClick={(event) => handleClick(event)}>TEST</button>
                 <button className={cx('btn')}>button</button>
                 <button className={cx('btn', {'is-active' :isActive})}>Active Button</button>
