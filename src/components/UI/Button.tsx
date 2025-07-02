@@ -11,8 +11,8 @@ function Button(props) {
         console.log(event);
         console.log('Button clicked!');
     }
-    const Title = styled.h1`
-        color: blue;
+    const Title = styled.h1<{ $color : string; $decoration:string}>`
+        color: ${(props) => props.$color || 'black'};
         text-decoration: underline;
       `;
     const Wrapper = styled.section`
@@ -23,7 +23,7 @@ function Button(props) {
     return (
         <div>
 
-            <Title>Hello, ReactJS! </Title>
+            <Title $color='red'>Hello, ReactJS! </Title>
             <Wrapper>
                 <button onClick={(event) => handleClick(event)}>TEST</button>
                 <button className={cx('btn')}>button</button>
