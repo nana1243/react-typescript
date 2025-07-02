@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Button.module.css';
 import classNames from "classnames/bind";
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 
 function Button(props) {
     const cx = classNames.bind(styles);
@@ -11,9 +11,19 @@ function Button(props) {
         console.log(event);
         console.log('Button clicked!');
     }
+    const fadeIn = keyframes`
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    `;
+
     const Title = styled.h1<{ $color : string; $decoration:string}>`
         color: ${(props) => props.$color || 'black'};
         text-decoration: underline;
+        animation: ${fadeIn} 2s ease-in-out;
       `;
 
     const BigTitle = styled(Title)`
@@ -31,10 +41,11 @@ function Button(props) {
         background-color: lightblue;
     `;
 
+
     return (
         <div>
             {/*상속 받은 Bigtitle 은 영향을 받지 못한다. */}
-            <BigTitle as='p'>Hello, Styled Components!</BigTitle>
+            {/*<BigTitle as='p'>Hello, Styled Components!</BigTitle>*/}
             <Title $color='lightblue' as='h3'>Hello, ReactJS! </Title>
             <BlueBorderWrapper>
                 <button onClick={(event) => handleClick(event)}>TEST</button>
