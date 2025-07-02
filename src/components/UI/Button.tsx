@@ -13,7 +13,7 @@ function Button(props) {
     }
 
     const boxShadowMixin = css`
-        box-shadow: 0 3px black;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
     `;
 
     const fadeIn = keyframes`
@@ -42,7 +42,7 @@ function Button(props) {
       `;
 
     const BlueBorderWrapper = styled(Wrapper)<{$shadow : boolean}>`
-        border-color: blue;
+        border-color: ${(props)=> props.theme.colors.danger};
         background-color: lightblue;
         ${props => props.$shadow && boxShadowMixin}
     `;
@@ -53,7 +53,7 @@ function Button(props) {
             {/*상속 받은 Bigtitle 은 영향을 받지 못한다. */}
             {/*<BigTitle as='p'>Hello, Styled Components!</BigTitle>*/}
             <Title $color='lightblue' as='h3'>Hello, ReactJS! </Title>
-            <BlueBorderWrapper $shadow={true}>
+            <BlueBorderWrapper $shadow={false}>
                 <button onClick={(event) => handleClick(event)}>TEST</button>
                 <button className={cx('btn')}>button</button>
                 <button className={cx('btn', {'is-active' :isActive})}>Active Button</button>
