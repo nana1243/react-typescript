@@ -15,6 +15,11 @@ function Button(props) {
         color: ${(props) => props.$color || 'black'};
         text-decoration: underline;
       `;
+    const BigTitle = styled(Title)`
+        font-size: 2em;
+        font-weight: bold;
+    `;
+
     const Wrapper = styled.section`
         padding: 20px;
         border: 1px solid #ccc;
@@ -28,7 +33,7 @@ function Button(props) {
     return (
         <div>
 
-            <Title $color='red'>Hello, ReactJS! </Title>
+            <BigTitle $color='lightblue'>Hello, ReactJS! </BigTitle>
             <BlueBorderWrapper>
                 <button onClick={(event) => handleClick(event)}>TEST</button>
                 <button className={cx('btn')}>button</button>
