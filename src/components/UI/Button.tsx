@@ -29,6 +29,9 @@ function Button(props) {
         color: ${(props) => props.$color || 'black'};
         text-decoration: underline;
         animation: ${fadeIn} 2s ease-in-out;
+        &:hover {
+          color : pink;
+         }
       `;
 
     const BigTitle = styled(Title)`
@@ -52,7 +55,7 @@ function Button(props) {
         <div>
             {/*상속 받은 Bigtitle 은 영향을 받지 못한다. */}
             {/*<BigTitle as='p'>Hello, Styled Components!</BigTitle>*/}
-            <Title $color='lightblue' as='h3'>Hello, ReactJS! </Title>
+            <Title $color='lightblue' as='h3' title="...hello..." onClick={()=> {alert('hello!')}}>Hello, ReactJS! </Title>
             <BlueBorderWrapper $shadow={false}>
                 <button onClick={(event) => handleClick(event)}>TEST</button>
                 <button className={cx('btn')}>button</button>
