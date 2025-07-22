@@ -41,7 +41,7 @@ jobs:
           datetime=$(date +"%Y%m%d_%H%M%S")
           filename="generated_$datetime.json"
           
-           awk '/```json/{f=1;next} /```/{f=0} f' generated.txt > "src/locales/$filename"
+           awk '/```json/{f=1;next} /```/{f=0} f' src/locales/generated.txt > "src/locales/$filename"
 
       #          awk '/```json/{f=1;next} /```/{f=0} f' generated.txt | jq . > "src/locales/$filename"
       #
