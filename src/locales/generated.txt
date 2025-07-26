@@ -1,0 +1,1396 @@
+--- /home/runner/work/react-typescript/react-typescript/src/components/Login/Login.tsx ---
+
+import React from 'react';
+import UserView from "./UserView";
+import UserInfoView from "./UserInfoView";
+import Welcome from "./Welcome";
+
+function Login() {
+    const isLoggedIn = true;
+    if (isLoggedIn) return (
+        <>
+            <UserView/>
+            <UserInfoView/>
+        </>
+    )
+    return (
+        <Welcome/>
+    )
+
+}
+
+export default Login;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/Login/UserInfoView.tsx ---
+
+import React from 'react';
+
+function UserInfoView() {
+    return (
+        <>
+            <h1>UserInfoView</h1>
+        </>
+    );
+}
+
+export default UserInfoView;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/Login/UserView.tsx ---
+
+import React from 'react';
+
+function UserView(props) {
+    return (
+        <>
+            <h1>UserView</h1>
+        </>
+    );
+}
+
+export default UserView;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/Login/Welcome.tsx ---
+
+import React from 'react';
+
+function Welcome(props) {
+    return (
+        <>
+            <h1>Welcome!</h1>
+        </>
+    );
+}
+
+export default Welcome;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/LoginV2/LoginStatus.tsx ---
+
+import React from 'react';
+import LoginUser from "./LoginUser";
+import LogoutUser from "./LogoutUser";
+
+interface LoginStatusProps {
+    isLoggedIn: boolean;
+    handleLogin: () => void;
+    handleLogout: () => void;
+}
+
+
+function LoginStatus(props) {
+    const { isLoggedIn, handleLogin, handleLogout } = props;
+
+    return (
+        <>
+            <h1>LoginStatus</h1>
+            {isLoggedIn ? <LoginUser handleLogout={handleLogout} /> : <LogoutUser handleLogin={handleLogin} />}
+        </>
+    );
+}
+
+export default LoginStatus;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/LoginV2/LoginUser.tsx ---
+
+import React from 'react';
+
+interface LoginUserProps{
+    handleLogout: () => void;
+}
+
+function LoginUser(props : LoginUserProps) {
+    const { handleLogout } = props;
+    return (
+        <>
+            <h3>"환영합니다, 사용자 !"</h3>
+            <button onClick={handleLogout}>Logout</button>
+        </>
+    );
+}
+
+export default LoginUser;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/LoginV2/LogoutUser.tsx ---
+
+import React from 'react';
+
+interface LogoutUserProps {
+    handleLogin: () => void;
+}
+
+function LogoutUser(props :LogoutUserProps) {
+    const { handleLogin } = props;
+
+    return (
+        <>
+            <h3>"로그인이 필요합니다"</h3>
+            <button onClick={handleLogin}>Login</button>
+        </>
+    );
+}
+
+export default LogoutUser;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/LoginV3/LoginV3.tsx ---
+
+import React from 'react';
+
+function LoginV3(props) {
+    const isLoggedIn = props.isLoggnedIn;
+
+    return (
+        <>
+            {isLoggedIn && <h1>Welcome Back!</h1>}
+            {!isLoggedIn && <h1>Please Sign In</h1>}
+        </>
+    );
+}
+
+export default LoginV3;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/Main.tsx ---
+
+import React from 'react';
+import User from "./Users/User";
+import PrintValue from "./PrintValue";
+import UserV2 from "./Users/UserV2";
+import Button from "./Button";
+import UIButton from "./UI/Button";
+import UIButtonV2 from "./UI/ButtonV2";
+import UserProfile from "./Users/UserProfile";
+import Table from "./Table/Table";
+import FormV2 from "./UI/FormV2";
+import ButtonV3 from "./UI/ButtonV3";
+import StatePractice from "./StatePractice/StatePractice";
+import StatePracticeV2 from "./StatePractice/StatePracticeV2";
+import Profile from "./StatePractice/Profile";
+// import Count from "./StatePractice/Count";
+import UserV3 from "./Users/UserV3";
+import FirstComponent from "./NumberComponent/FirstComponent";
+import SecondComponent from "./NumberComponent/SecondComponent";
+import NumberComponent from "./NumberComponent/NumberComponent";
+import Count from "./CalculatorV3/Count";
+
+function Main(props) {
+    const referenceArray = [1,2,3,4];
+    const referenceObject = {name : "hennie", age:30};
+    const referenceFunction = () => "함수 리턴값!";
+    const referenceDate = new Date();
+    const referenceRegExp = /react/i;
+    const referenceMap = new Map([
+        ["key1", "value1"],
+        ["key2", "value2"]
+    ])
+    const referenceSet = new Set([1,2,3,4]);
+
+    const numberValue = 2;
+    const stringValue = 'test';
+    const booleanValue = true;
+    const arrayValue = [1,2,3,5];
+    const objectValue = {id:2 , name : 'test'};
+    const handleClick = () => alert('버튼이 클릭되었습니다!');
+    const handleClickV2 = (event: React.MouseEvent<HTMLButtonElement>) => {
+        console.log(`event`,event);
+        alert(event.currentTarget.innerText);
+    }
+
+
+    const userObject = {
+        username: "hennie",
+        email: "hennie92@naver.com"
+    }
+
+    return (
+        <>
+            <h1>Main Component</h1>
+            <User name ={"hennie"} age={20} />
+            <p>배열 : {referenceArray}</p>
+            <p>객체 : {JSON.stringify(referenceObject)}</p>
+            <p>배열 : {referenceFunction.toString()}</p>
+            <p>정규 표현식 : {referenceRegExp.toString()}</p>
+            <p>Date : {referenceDate.toDateString()}</p>
+            <p>Map : {JSON.stringify(Array.from(referenceMap))}</p>
+            <p>Set : {JSON.stringify(Array.from(referenceSet))}</p>
+            <PrintValue
+                numberValue = {numberValue}
+                stringValue = {stringValue}
+                booleanValue = {booleanValue}
+                arrayValue = {arrayValue}
+                objectValue= {objectValue}
+                handleClick ={handleClick}
+            />
+            <UserV2 {...userObject} />
+            {/*<Button onClick={handleClick}>Login</Button>*/}
+            <UserProfile name={'Alice'} age={30} isAdmin={true}/>
+            <UserProfile name={'Bob'} age={25} isAdmin={false}/>
+            <UIButton onClick={handleClick}>Click Me</UIButton>
+            <UIButtonV2 handleClick={handleClickV2}> Click Me Too </UIButtonV2>
+            <FormV2/>
+            <ButtonV3 message='this is button for Login!'>Login Please</ButtonV3>
+            {/* section5. STATE */}
+            <StatePractice/>
+            <StatePracticeV2/>
+            <Profile/>
+            {/*<Count/>*/}
+            <UserV3/>
+            <NumberComponent/>
+            {/*<Count/>*/}
+            <Count/>
+        </>
+    );
+}
+
+export default Main;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/Notification/NotShowNoti.tsx ---
+
+import React from 'react';
+
+interface NotShowNotiProps {
+    handleNotification: () => void;
+
+}
+
+function NotShowNoti(props :NotShowNotiProps) {
+    const {handleNotification} = props;
+
+    return (
+        <>
+            <button onClick={handleNotification}>알림 보기</button>
+        </>
+    );
+}
+
+export default NotShowNoti;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/Notification/Notification.tsx ---
+
+import React, {useState} from 'react';
+import ShowNoti from "./ShowNoti";
+import NotShowNoti from "./NotShowNoti";
+
+function Notification() {
+    const [showNotification, setShowNotification] = useState<boolean>(false);
+
+    const handleNotification = () => {
+        setShowNotification((prev) => !prev);
+    };
+
+    return (
+        <>
+            {showNotification && <ShowNoti handleNotification={handleNotification} />}
+            {!showNotification && <NotShowNoti handleNotification={handleNotification} />}
+        </>
+    );
+}
+
+export default Notification;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/Notification/ShowNoti.tsx ---
+
+import React from 'react';
+
+interface ShowNotiProps {
+    handleNotification: () => void;
+}
+
+function ShowNoti(props: ShowNotiProps) {
+    const {handleNotification} =props;
+
+    return (
+        <>
+            <h1>📢 새로운 알림이 도착했습니다!</h1>
+            <button onClick={handleNotification}>알림 닫기</button>
+        </>
+    );
+}
+
+export default ShowNoti;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/NumberComponent/FirstComponent.tsx ---
+
+import React, {Dispatch, useState} from 'react';
+
+
+interface FirstComponentProps {
+    count: number;
+    handleIncrement: () => void;
+}
+
+function FirstComponent(props:FirstComponentProps){
+    const {count, handleIncrement} = props;
+
+    console.log('FirstComponent rendered');
+
+    return (
+        <div>
+            <h3>First Component</h3>
+            <p>Count: {count}</p>
+            <button onClick={handleIncrement}>Increment</button>
+        </div>
+    );
+}
+
+export default FirstComponent;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/NumberComponent/NumberComponent.tsx ---
+
+import React, {useState} from 'react';
+import FirstComponent from "./FirstComponent";
+import SecondComponent from "./SecondComponent";
+
+function NumberComponent() {
+    const [count, setCount] = useState<number>(0);
+
+    // 캡슐화 : 직접 상태업데이트를 props로 전달하지 않고, 함수를 만들어 전달.
+    const handleIncrement = () => {
+        setCount(prevCount => prevCount + 1);
+    }
+
+
+    return (
+        <>
+            <FirstComponent count={count} handleIncrement={handleIncrement} />
+            <SecondComponent count={count} handleIncrement={handleIncrement} />
+        </>
+    );
+}
+
+export default NumberComponent;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/NumberComponent/SecondComponent.tsx ---
+
+import React, {Dispatch, useState} from 'react';
+
+interface SecondComponentProps {
+    count: number;
+    handleIncrement: () => void;
+}
+
+function SecondComponent(props:SecondComponentProps){
+    const {count, handleIncrement} = props;
+
+    return (
+        <div>
+            <h3>Second Component</h3>
+            <p>Count: {count}</p>
+            <button onClick={handleIncrement}>Increment</button>
+        </div>
+    );
+
+}
+
+export default SecondComponent;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/PrintValue.tsx ---
+
+import React from 'react';
+
+interface PrintValueProps {
+    numberValue : number;
+    stringValue : string;
+    booleanValue : boolean;
+    arrayValue : number[];
+    objectValue : {id:number, name : string};
+    handleClick : () => void;
+}
+
+function PrintValue(props: PrintValueProps) {
+    const {numberValue, booleanValue, objectValue, arrayValue , stringValue , handleClick} = props
+
+    return (
+        <>
+            <h1>PrintValue</h1>
+            <p>number : {numberValue} </p>
+            <p>string : {stringValue} </p>
+            <p>boolean : {booleanValue.toString()} </p>
+            <p>array : {arrayValue} </p>
+            <p>object : {JSON.stringify(objectValue)} </p>
+            <p>handleClick : {handleClick.toString()}</p>
+
+        </>
+    );
+}
+
+export default PrintValue;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/PrintValueV2.tsx ---
+
+import React from 'react';
+
+
+function PrintValueV2({numberValue , stringValue, booleanValue , arrayValue, objectValue, handleClick} : {
+    numberValue : number;
+    stringValue : string;
+    booleanValue : boolean;
+    arrayValue : number[];
+    objectValue : {id : number, name : string};
+    handleClick : () => void
+})
+{
+
+    return (
+        <>
+            <h1>PrintValue</h1>
+            <p>number : {numberValue} </p>
+            <p>string : {stringValue} </p>
+            <p>boolean : {booleanValue.toString()} </p>
+            <p>array : {arrayValue} </p>
+            <p>object : {JSON.stringify(objectValue)} </p>
+            <p>handleClick : {handleClick.toString()}</p>
+
+        </>
+    );
+}
+
+export default PrintValueV2;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/Recepies/Recipe.tsx ---
+
+import React from 'react';
+
+
+interface RecipeType {
+    id : string;
+    name: string;
+    ingredients: string[];
+}
+
+interface RecipeProps {
+    recipes: RecipeType;
+    handleRemoveRecipe: (id: string) => void;
+}
+
+function Recipe(props :RecipeProps) {
+    
+    
+    return (
+        <>
+            <li>
+                <h2>{props.recipes.name}</h2>
+                <ul>
+                    {props.recipes.ingredients.map((ingredient, index) => (
+                        <li key={index}>{ingredient}</li>
+                    ))}
+                </ul>
+                <button onClick={() => props.handleRemoveRecipe(props.recipes.id)}>
+                    Remove Recipe
+                </button>
+            </li>
+        </>
+    );
+}
+
+export default Recipe;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/Recepies/RecipeList.tsx ---
+
+import React, {useState} from 'react';
+import Recipe from "./Recipe";
+
+function RecipeList() {
+    const initialRecipes = [
+        {
+            id: "greek-salad",
+            name: "Greek Salad",
+            ingredients: ["tomatoes", "cucumber", "onion", "olives", "feta"],
+        },
+        {
+            id: "hawaiian-pizza",
+            name: "Hawaiian Pizza",
+            ingredients: [
+                "pizza crust",
+                "pizza sauce",
+                "mozzarella",
+                "ham",
+                "pineapple",
+            ],
+        },
+        {
+            id: "hummus",
+            name: "Hummus",
+            ingredients: ["chickpeas", "olive oil", "garlic cloves", "lemon", "tahini"],
+        },
+    ];
+    const [recipes, setRecipes] = useState(initialRecipes);
+
+    const handleRemoveRecipe = (id) => {
+        setRecipes((prevRecipes) => prevRecipes.filter(recipe => recipe.id !== id));
+    }
+
+    return (
+        <>
+            <h1>Recipes!🍎 </h1>
+            <ul>
+                {
+                    recipes.map((recipe) => {
+                        return (
+                            <Recipe
+                                key={recipe.id}
+                                recipes={recipe}
+                                handleRemoveRecipe={handleRemoveRecipe}
+                            />
+                        )
+                    })
+                }
+            </ul>
+        </>
+    );
+}
+
+export default RecipeList;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/StatePractice/Count.tsx ---
+
+import React, {useState} from 'react';
+
+function Count() {
+    const [count, setCount] = useState<number>(0);
+    const [countV2, setCountV2] = useState<number>(0);
+
+
+    const handleIncrementV2 = () => {
+        // batch와 클로저로 인해 항상 1씩 증가 한다.
+        setCountV2(countV2 + 1); // 0 + 1
+        setCountV2(countV2 + 1); // 0 + 1
+        setCountV2(countV2 + 1); // 0 + 1
+    }
+
+    const handleIncrement = () => {
+        setCount(prevCount => prevCount + 1);
+        setCount(prevCount => prevCount + 1);
+        setCount(prevCount => prevCount + 1);
+    };
+
+
+    return (
+        <>
+            <p>count : {count} || countV2 : {countV2}</p>
+            <button onClick={handleIncrement}>Increment</button>
+            <button onClick={handleIncrementV2}>Increment V2</button>
+        </>
+    );
+}
+
+export default Count;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/StatePractice/Profile.tsx ---
+
+import React, {useState} from 'react';
+
+function Profile() {
+    const [name, setName] = useState<string>('jack');
+    const [age, setAge] = useState<number>(20);
+    const [gender, setGender] = useState<string>('female');
+
+    const handleUpdateProfile = () => {
+       setName('john');
+       setAge(25);
+       setGender('male');
+    }
+
+    return (
+        <>
+            <p>name : {name}</p>
+            <p>age :  {age}</p>
+            <p>gender : {gender}</p>
+            <button onClick={handleUpdateProfile}>Update Profile</button>
+        </>
+    );
+}
+
+export default Profile;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/StatePractice/StatePractice.tsx ---
+
+import React from 'react';
+
+function StatePractice(props) {
+    let name = 'mike';
+    let age = 20;
+
+    const handleClick = () => {
+        name = 'jane';
+        age = 25;
+        console.log(`Name: ${name}, Age: ${age}`);
+    };
+
+    return (
+        <>
+            <div>
+                <h1>State Practice</h1>
+                <p>Name: {name}</p>
+                <p>Age: {age}</p>
+                <button onClick={handleClick}>Change State</button>
+            </div>
+        </>
+    );
+}
+
+export default StatePractice;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/StatePractice/StatePracticeV2.tsx ---
+
+import React from 'react';
+
+function StatePracticeV2(props) {
+    const [name, setName] = React.useState<string>('mike');
+
+    const handleSetToJane = () => {
+        setName('jane');
+        console.log(`Name changed to: ${name}`);
+    }
+
+    return (
+        <>
+            <div>
+                <h1>State Practice V2</h1>
+                <p>Name: {name}</p>
+                <button onClick={handleSetToJane}>Change Name to Jane</button>
+
+            </div>
+        </>
+    );
+}
+
+export default StatePracticeV2;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/StatePractice/StatePracticeV3.tsx ---
+
+import React, {useState} from 'react';
+
+function StatePracticeV3() {
+    const [state, setState] = useState<number | string>(0);
+
+    const handleSetToOne = () => {
+        setState("10");
+        console.log(`State changed to: ${state}`);
+    }
+
+
+    return (
+        <>
+            <h1>state : {state}</h1>
+            <button onClick={handleSetToOne}>Change State to 10</button>
+        </>
+    );
+}
+
+export default StatePracticeV3;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/StatusMessage/StatusMessage.tsx ---
+
+import React from 'react';
+
+type StatusType = 'success' | 'error' | 'warning' | 'info';
+
+interface StatusMessagePropsInterface {
+    status: StatusType;
+}
+
+
+function StatusMessage(props :StatusMessagePropsInterface) {
+    const {status} = props;
+    console.log(`StatusMessage rendered with status: ${status}`);
+
+    switch (status) {
+        case 'success':
+            return <div className="status-message success">Operation was successful!</div>;
+        case 'error':
+            return <div className="status-message error">An error occurred. Please try again.</div>;
+        case 'warning':
+            return <div className="status-message warning">Warning! Please check your input.</div>;
+        case 'info':
+            return <div className="status-message info">This is an informational message.</div>;
+        default:
+            return null;
+    }
+}
+
+export default StatusMessage;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/Table/Table.tsx ---
+
+import React from 'react';
+
+function Table(props) {
+    return (
+        <>
+            <table border={2}  onClickCapture={()=> console.log('table')}>
+                <tbody onClickCapture={() => console.log('tbody')}>
+                    {/*{props.children.map((child, index) => (*/}
+                        <tr key={1} onClickCapture={() => console.log('tr')}>
+                            <td onClickCapture={(event)=> {
+                                // event.stopPropagation();
+                                console.log('td');
+                            }}>MIKE</td>
+                        </tr>
+                    {/*))}*/}
+                </tbody>
+            </table>
+        </>
+    );
+}
+
+export default Table;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/TrafficLight/TrafficLight.tsx ---
+
+import React from 'react';
+
+type TrafficLightColor = 'red' | 'yellow' | 'green';
+
+interface TrafficLightProps {
+    light : TrafficLightColor;
+    handleClick: (color: TrafficLightColor) => void;
+}
+
+function TrafficLight(props :TrafficLightProps) {
+    const { light, handleClick } = props;
+
+    switch (light) {
+        case "red":
+            return (
+                <>
+                    <h1>Light ❤️❤️❤️</h1>
+                    <button onClick={() => handleClick('red')}>Change Color</button>
+                </>
+            );
+        case "yellow":
+            return (
+                <>
+                    <h1>Light 💛💛💛</h1>
+                    <button onClick={() => handleClick('yellow')}>Change Color</button>
+                </>
+            );
+        case "green":
+            return (
+                <>
+                    <h1>Light 💚💚💚</h1>
+                    <button onClick={() => handleClick('green')}>Change Color</button>
+                </>
+            );
+
+    }
+}
+
+export default TrafficLight;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/TrafficLightMission/LightButton.tsx ---
+
+import React, { useMemo } from 'react';
+import styled, { keyframes, css } from 'styled-components';
+
+interface LightButtonProps {
+    color: string;
+    onClick: () => void;
+}
+
+// ✅ 공통 라이트 스타일
+const Light = styled.button`
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+`;
+
+// ✅ 동적 애니메이션 스타일 함수
+const getAnimation = (color: string) => {
+    let baseColor, shadowColor, dimColor;
+
+    switch (color) {
+        case 'red':
+            baseColor = '#ff0000';
+            shadowColor = '#ff3333';
+            dimColor = '#b30000';
+            break;
+        case 'yellow':
+            baseColor = '#ffff00';
+            shadowColor = '#ffff33';
+            dimColor = '#b2b300';
+            break;
+        case 'green':
+            baseColor = '#00ff00';
+            shadowColor = '#33ff33';
+            dimColor = '#00b300';
+            break;
+        default:
+            return null;
+    }
+
+    return keyframes`
+    0% {
+      background-color: ${baseColor};
+      box-shadow: 0 0 6em ${shadowColor};
+    }
+    50% {
+      background-color: ${dimColor};
+      box-shadow: 0 0 0em transparent;
+    }
+  `;
+};
+
+// ✅ 컬러 적용 컴포넌트
+const ColorStyle = styled(Light)<{ $color: string; $animation?: ReturnType<typeof keyframes> }>`
+  background-color: ${props => props.$color};
+  box-shadow: 0 0 20px ${props => props.$color};
+
+  &:hover {
+    ${({ $animation }) =>
+    $animation &&
+    css`
+        animation: ${$animation} 1s infinite;
+      `}
+  }
+  
+    &:active {
+
+    }
+`;
+
+function LightButton(props: LightButtonProps) {
+    const { color, onClick } = props;
+
+    // 애니메이션은 렌더링 최적화를 위해 useMemo 사용
+    const animation = useMemo(() => getAnimation(color), [color]);
+
+    return (
+        <ColorStyle $color={color} $animation={animation} onClick={onClick}>
+            {color}
+        </ColorStyle>
+    );
+}
+
+export default LightButton;
+
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/TrafficLightMission/TrafficLight.tsx ---
+
+import React, {useState} from 'react';
+import LightButton from "./LightButton";
+import styled from "styled-components";
+
+function TrafficLight() {
+    const makeLightInitialState = (color : string) => {
+        return {
+            color : color,
+            isActive: false,
+        }
+    }
+    const [lightsArray, setLightsArray] = useState(['red', 'yellow', 'green '].map(data=> makeLightInitialState(data)));
+    const handleClick = (color: string) => {
+        const result = lightsArray.find(data => data.color === color);
+        if (result) {
+            setLightsArray(lightsArray.map(data => {
+                return data.color === color ? {...data, isActive: true} : {...data, isActive: false};
+            }));
+        }
+
+    }
+
+    const LightWrapper = styled.div`
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #333;
+        width: 120px;
+        height: 320px;
+        border-radius: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        padding: 20px 0;
+    `
+
+
+    return (
+        <LightWrapper>
+                {lightsArray.map(data=> {
+                    return (
+                        <>
+                            <li>
+                                <LightButton
+                                    color={data.color}
+                                    isActive={data.isActive}
+                                    onClick={() => handleClick(data.color)}
+                                />
+                            </li>
+                        </>
+                    )
+                })}
+        </LightWrapper>
+    );
+}
+
+export default TrafficLight;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/UI/Button.tsx ---
+
+import React from 'react';
+import styles from './Button.module.css';
+import classNames from "classnames/bind";
+import styled, {keyframes , css} from "styled-components";
+
+function Button(props) {
+    const cx = classNames.bind(styles);
+    const isActive = false;
+
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        console.log(event);
+        console.log('Button clicked!');
+    }
+
+    const boxShadowMixin = css`
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+    `;
+
+    const fadeIn = keyframes`
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    `;
+
+    const Title = styled.h1<{ $color : string; $decoration:string}>`
+        color: ${(props) => props.$color || 'black'};
+        text-decoration: underline;
+        animation: ${fadeIn} 2s ease-in-out;
+        &:hover {
+          color : pink;
+         }
+      `;
+
+    const BigTitle = styled(Title)`
+        font-size: 2em;
+        font-weight: bold;
+    `;
+
+    const Wrapper = styled.section`
+        padding: 20px;
+        border: 1px solid #ccc;
+      `;
+
+    const BlueBorderWrapper = styled(Wrapper)<{$shadow : boolean}>`
+        border-color: ${(props)=> props.theme.colors.danger};
+        background-color: lightblue;
+        ${props => props.$shadow && boxShadowMixin}
+    `;
+
+
+    return (
+        <div>
+            {/*상속 받은 Bigtitle 은 영향을 받지 못한다. */}
+            {/*<BigTitle as='p'>Hello, Styled Components!</BigTitle>*/}
+            <Title $color='lightblue' as='h3' title="...hello..." onClick={()=> {alert('hello!')}}>Hello, ReactJS! </Title>
+            <BlueBorderWrapper $shadow={false}>
+                <button onClick={(event) => handleClick(event)}>TEST</button>
+                <button className={cx('btn')}>button</button>
+                <button className={cx('btn', {'is-active' :isActive})}>Active Button</button>
+            </BlueBorderWrapper>
+        </div>
+    );
+}
+
+export default Button;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/UI/ButtonV2.tsx ---
+
+import React from 'react';
+
+interface ButtonProps {
+    handleClick: (event:React.MouseEvent<HTMLButtonElement>) => void;
+    children: React.ReactNode;
+
+}
+
+
+function ButtonV2({handleClick, children }: ButtonProps ) {
+    return (
+        <div>
+            <button onClick={handleClick}>{children}</button>
+        </div>
+    );
+}
+
+export default ButtonV2;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/UI/ButtonV3.tsx ---
+
+import React from 'react';
+
+interface ButtonProps {
+    message: string;
+    children: React.ReactNode;
+ }
+
+
+function ButtonV3(props : ButtonProps) {
+    const {message, children} = props;
+
+    const handleClick = () => {
+        alert(message);
+    }
+
+    return (
+        <>
+            <button
+                onClick={handleClick}
+            >{children}
+            </button>
+        </>
+    );
+}
+
+export default ButtonV3;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/UI/FormV2.tsx ---
+
+import React from 'react';
+
+function FormV2(props) {
+    return (
+        <form onSubmit={(event)=> event.preventDefault()}>
+            <a href="https://naver.com" onClick={(event) => event.preventDefault()}>
+                NAVER
+            </a>
+            <button type="submit">SUBMIT</button>
+        </form>
+    );
+}
+
+export default FormV2;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/UI/Fruits.tsx ---
+
+import React, {useState} from 'react';
+
+function Fruits() {
+    const [fruits, setFruits] = useState<string[]>(['사과', '바나나', '오렌지']);
+    const handleAddFruit = () => {
+        // 원본 데이터를 변경하지 않는 선에서 데이터를 업데이트 해야한다.
+        setFruits(prevFruits => [...prevFruits, '망고']);
+        setFruits(prevFruits => [...prevFruits.slice(0,1), '멜론', ...prevFruits.slice(1)]);
+    }
+
+
+    return (
+        <>
+            <p>{fruits.join(',')}</p>
+            <button onClick={handleAddFruit}>update fruits</button>
+        </>
+    );
+}
+
+export default Fruits;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/Users/User.tsx ---
+
+import React from 'react';
+
+function User(props : { name : string; age:number}) {
+    const {name,age} = props
+
+    return (
+        <div>
+            <h3>this is name : {name}</h3>
+            <h3>this is age : {age}</h3>
+        </div>
+    );
+}
+
+export default User;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/Users/UserProfile.tsx ---
+
+import React from 'react';
+
+interface UserProfileProps {
+    name : string;
+    age : number;
+    isAdmin : boolean;
+}
+
+function UserProfile(props :UserProfileProps) {
+    const {name, age, isAdmin} = props;
+
+    return (
+        <div>
+            <p>이름 : {name}</p>
+            <p>나이 : {age}</p>
+            <p>{isAdmin ? '관리자 계정' : '일반 사용자'}</p>
+        </div>
+    );
+}
+
+export default UserProfile;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/Users/UserV2.tsx ---
+
+import React from 'react';
+
+interface UserProps {
+    username: string;
+    email: string;
+}
+
+
+function UserV2(props :UserProps) {
+    console.log('this is props',props)
+    const {username, email } = props;
+
+    return (
+        <>
+            <h2>User Information</h2>
+            <p>User: {username}</p>
+            <p>Email: {email}</p>
+        </>
+    );
+}
+
+export default UserV2;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/Users/UserV3.tsx ---
+
+import React from 'react';
+
+function UserV3() {
+    const [userInfo, setUserInfo] = React.useState({
+        name: '',
+        age: 0,
+        isAdmin: false
+    });
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        console.log('e',e.target)
+        const { name, value, checked } = e.target;
+
+        setUserInfo(prevState => ({
+            ...prevState,
+            [name ]: name === 'isAdmin' ? checked : value
+
+        }));
+    }
+
+
+    return (
+        <>
+            <h1>User : name : {userInfo.name} || age:   {userInfo.age} || isAdmin :  {userInfo.isAdmin.toString()}</h1>
+            <p>이름 : <input type="text" name="name" value={userInfo.name} onChange={handleInputChange} /></p>
+            <p>나이 : <input type="number" name="age" value={userInfo.age} onChange={handleInputChange} /></p>
+            <p>
+                관리자 계정 :
+                <input
+                    type="checkbox"
+                    name="isAdmin"
+                    checked={userInfo.isAdmin}
+                    onChange={handleInputChange}
+                />
+            </p>
+        </>
+    );
+}
+
+export default UserV3;
+
+--- /home/runner/work/react-typescript/react-typescript/src/components/Users/UserV4.tsx ---
+
+import React from 'react';
+
+function UserV4() {
+    const [userInfo, setUserInfo] = React.useState({
+        name: '',
+        age: 0,
+        isAdmin: false,
+        contact: {
+            email: '',
+            phone: ''
+        },
+        address: {
+            home : {
+                street: '',
+                city: '',
+                zipCode: ''
+            },
+            office : {
+                street: '',
+                city: '',
+                zipCode: ''
+
+            }
+        }
+    });
+
+    const handleUpdateUserInfo = () => {
+        setUserInfo(prevState => ({
+            ...prevState,
+            name : 'John Doe',
+            age: 30,
+            contact: {
+                ...prevState.contact,
+                email : 'sucoding@naver.com'
+            }
+        }));
+    }
+
+    return (
+        <>
+            <pre>{JSON.stringify(userInfo ,null, 2)}</pre>
+            <button onClick={handleUpdateUserInfo}>Update User Info</button>
+        </>
+    );
+}
+
+export default UserV4;
+
+--- /home/runner/work/react-typescript/react-typescript/src/main.tsx ---
+
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App.tsx'
+import {ThemeProvider} from "styled-components";
+
+const theme = {
+    colors: {
+        primary: '#007bff',
+        secondary: '#6c757d',
+        success: '#28a745',
+        danger: '#dc3545',
+        warning: '#ffc107',
+        info: '#17a2b8',
+        light: '#f8f9fa',
+        dark: '#343a40',
+    },
+    fontSizes: {
+        small: '0.875rem',
+        medium: '1rem',
+        large: '1.25rem',
+        xlarge: '1.5rem',
+    }
+}
+
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+  </StrictMode>,
+)
+```json
+{
+  "buttonGroup.button1": "Button 1",
+  "buttonGroup.button2": "Button 2",
+  "buttonGroup.button3": "Button 3",
+  "buttonGroup.button4": "Button 4",
+  "buttonGroup.reset": "Reset",
+  "calculator.calculatorComponent": "Calculator Component",
+  "calculator.count": "Count: ",
+  "calculator.increment": "Increment",
+  "calculator.decrement": "Decrement",
+  "calculator.reset": "Reset",
+  "count.thisIsCountApp": "This is Count App",
+  "countButton.increment": "increment",
+  "countButton.decrement": "decrement",
+  "countButton.reset": "reset",
+  "countDisplay.countDisplay": "CountDisplay",
+  "countDisplay.count": "count : ",
+  "count.count": "Count : ",
+  "count.increment": "Increment",
+  "count.decrement": "Decrement",
+  "count.reset": "Reset",
+  "footer.footerComponent": "Footer Component",
+  "fruits.과일추가": "과일 추가",
+  "header.headerComponent": "Header Component",
+  "nav.navComponent": "Nav Component",
+  "inline.test": " TEST!!!!!!",
+  "userInfoView.userInfoView": "UserInfoView",
+  "userView.userView": "UserView",
+  "welcome.welcome": "Welcome!",
+  "loginStatus.loginStatus": "LoginStatus",
+  "loginUser.환영합니다사용자": "\"환영합니다, 사용자 !\"",
+  "loginUser.logout": "Logout",
+  "logoutUser.로그인이필요합니다": "\"로그인이 필요합니다\"",
+  "logoutUser.login": "Login",
+  "loginV3.welcomeBack": "Welcome Back!",
+  "loginV3.pleaseSignIn": "Please Sign In",
+  "main.mainComponent": "Main Component",
+  "main.배열": "배열 : ",
+  "main.객체": "객체 : ",
+  "main.정규표현식": "정규 표현식 : ",
+  "main.date": "Date : ",
+  "main.map": "Map : ",
+  "main.set": "Set : ",
+  "main.clickMe": "Click Me",
+  "main.clickMeToo": " Click Me Too ",
+  "main.loginPlease": "Login Please",
+  "notShowNoti.알림보기": "알림 보기",
+  "showNoti.📢새로운알림이도착했습니다": "📢 새로운 알림이 도착했습니다!",
+  "showNoti.알림닫기": "알림 닫기",
+  "firstComponent.firstComponent": "First Component",
+  "firstComponent.count": "Count: ",
+  "firstComponent.increment": "Increment",
+  "secondComponent.secondComponent": "Second Component",
+  "secondComponent.count": "Count: ",
+  "secondComponent.increment": "Increment",
+  "printValue.printValue": "PrintValue",
+  "printValue.number": "number : ",
+  "printValue.string": "string : ",
+  "printValue.boolean": "boolean : ",
+  "printValue.array": "array : ",
+  "printValue.object": "object : ",
+  "printValue.handleClick": "handleClick : ",
+  "printValueV2.printValue": "PrintValue",
+  "printValueV2.number": "number : ",
+  "printValueV2.string": "string : ",
+  "printValueV2.boolean": "boolean : ",
+  "printValueV2.array": "array : ",
+  "printValueV2.object": "object : ",
+  "printValueV2.handleClick": "handleClick : ",
+  "recipe.removeRecipe": "Remove Recipe",
+  "recipeList.recipes🍎": "Recipes!🍎 ",
+  "count.incrementV2": "Increment V2",
+  "profile.updateProfile": "Update Profile",
+  "statePractice.statePractice": "State Practice",
+  "statePractice.name": "Name: ",
+  "statePractice.age": "Age: ",
+  "statePractice.changeState": "Change State",
+  "statePracticeV2.statePracticeV2": "State Practice V2",
+  "statePracticeV2.name": "Name: ",
+  "statePracticeV2.changeNameToJane": "Change Name to Jane",
+  "statePracticeV3.changeStateTo10": "Change State to 10",
+  "statusMessage.operationWasSuccessful": "Operation was successful!",
+  "statusMessage.anErrorOccurredPleaseTryAgain": "An error occurred. Please try again.",
+  "statusMessage.warningPleaseCheckYourInput": "Warning! Please check your input.",
+  "statusMessage.thisIsAnInformationalMessage": "This is an informational message.",
+  "table.mike": "MIKE",
+  "trafficLight.light❤️❤️❤️": "Light ❤️❤️❤️",
+  "trafficLight.changeColor": "Change Color",
+  "trafficLight.light💛💛💛": "Light 💛💛💛",
+  "trafficLight.light💚💚💚": "Light 💚💚💚",
+  "lightButton.color": "color",
+  "button.helloReactjs": "Hello, ReactJS! ",
+  "button.test": "TEST",
+  "button.button": "button",
+  "button.activeButton": "Active Button",
+  "formV2.naver": "NAVER",
+  "formV2.submit": "SUBMIT",
+  "fruits.updateFruits": "update fruits",
+  "user.thisIsName": "this is name : ",
+  "user.thisIsAge": "this is age : ",
+  "userProfile.이름": "이름 : ",
+  "userProfile.나이": "나이 : ",
+  "userV2.userInformation": "User Information",
+  "userV2.user": "User: ",
+  "userV2.email": "Email: ",
+  "userV3.이름": "이름 : ",
+  "userV3.나이": "나이 : ",
+  "userV3.관리자계정": "관리자 계정 :",
+  "userV4.updateUserInfo": "Update User Info"
+}
+```
