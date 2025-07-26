@@ -44,17 +44,6 @@ jobs:
            awk '/```json/{f=1;next} /```/{f=0} f' src/locales/generated.txt > "src/locales/$filename"
 
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v3
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-northeast-2
-
-      - name: Upload to S3
-        run: |
-          aws s3 cp "src/locales/$filename" s3://i18n-automation/test/ --acl public-read
-
       - name: Commit and push changes
         run: |
           git config --global user.name "github-actions"
